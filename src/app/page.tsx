@@ -17,3 +17,13 @@ export default async function HomePage({
     vals.push(`%${q}%`);
     conds.push(`(title ILIKE $${vals.length} OR company ILIKE $${vals.length})`);
   }
+  if (tag) {
+    vals.push(tag);
+    conds.push(`$${vals.length} = ANY(tags)`);
+  }
+
+  const where = conds.length ? `WHERE ${conds.join(" AND ")}` : "";
+  let jobs: JobRow[] = [];
+  try {
+    const res = await pool.query<JobRow>(`SELECT * FROM jobs ${where} ORDER BY created_at DESC`, vals);
+    jobs = res.rows;

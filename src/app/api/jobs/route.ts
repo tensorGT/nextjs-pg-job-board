@@ -10,3 +10,9 @@ export async function GET(req: NextRequest) {
 
   if (q) {
     vals.push(`%${q}%`);
+    conds.push(`(title ILIKE $${vals.length} OR company ILIKE $${vals.length})`);
+  }
+  if (tag) {
+    vals.push(tag);
+    conds.push(`$${vals.length} = ANY(tags)`);
+  }

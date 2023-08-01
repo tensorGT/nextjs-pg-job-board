@@ -5,3 +5,7 @@ import { JobRow, pool } from "@/lib/db";
 export default async function JobDetailPage({ params }: { params: { id: string } }) {
   const id = Number(params.id);
   if (!Number.isInteger(id)) notFound();
+
+  const res = await pool.query<JobRow>("SELECT * FROM jobs WHERE id = $1", [id]);
+  const job = res.rows[0];
+  if (!job) notFound();

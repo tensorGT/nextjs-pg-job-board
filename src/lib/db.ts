@@ -6,3 +6,7 @@ export interface JobRow {
   company: string;
   location: string;
   tags: string[];
+  description: string;
+  created_at: string;
+}
+
