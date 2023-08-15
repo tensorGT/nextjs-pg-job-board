@@ -16,3 +16,9 @@ export async function GET(req: NextRequest) {
     vals.push(tag);
     conds.push(`$${vals.length} = ANY(tags)`);
   }
+
+  const where = conds.length ? `WHERE ${conds.join(" AND ")}` : "";
+  const result = await pool.query<JobRow>(`SELECT * FROM jobs ${where} ORDER BY created_at DESC`, vals);
+  return NextResponse.json(result.rows);
+}
+

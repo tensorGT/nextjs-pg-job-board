@@ -27,3 +27,13 @@ export default async function HomePage({
   try {
     const res = await pool.query<JobRow>(`SELECT * FROM jobs ${where} ORDER BY created_at DESC`, vals);
     jobs = res.rows;
+  } catch {
+    jobs = [];
+  }
+
+  return (
+    <main style={{ maxWidth: 820, margin: "32px auto", fontFamily: "sans-serif", padding: "0 16px" }}>
+      <h1>Dev Job Board</h1>
+      <p>learning nextjs app router + postgres queries</p>
+
+      <form method="GET" style={{ display: "flex", gap: 8, margin: "16px 0" }}>
