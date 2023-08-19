@@ -4,3 +4,4 @@ my first nextjs + postgres app! its a small job board where you can search and f
 dont forget run `schema.sql` in postgres and set `DATABASE_URL` before start.
 
 ```bash
+npm install

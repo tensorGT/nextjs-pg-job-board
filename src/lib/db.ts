@@ -14,3 +14,7 @@ export interface JobRow {
 const globalForPg = globalThis as unknown as { pgPool?: Pool };
 
 export const pool =
+  globalForPg.pgPool ||
+  new Pool({
+    connectionString: process.env.DATABASE_URL || "postgres://postgres:postgres@localhost:5432/jobs_db",
+  });

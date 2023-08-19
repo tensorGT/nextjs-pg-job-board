@@ -22,3 +22,9 @@ export async function GET(req: NextRequest) {
   return NextResponse.json(result.rows);
 }
 
+export async function POST(req: NextRequest) {
+  const body = await req.json();
+  if (!body.title || !body.company) {
+    return NextResponse.json({ error: "need title and company" }, { status: 400 });
+  }
+  const tags = Array.isArray(body.tags) ? body.tags : [];

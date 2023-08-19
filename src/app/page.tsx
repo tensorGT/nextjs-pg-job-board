@@ -37,3 +37,13 @@ export default async function HomePage({
       <p>learning nextjs app router + postgres queries</p>
 
       <form method="GET" style={{ display: "flex", gap: 8, margin: "16px 0" }}>
+        <input name="q" defaultValue={q} placeholder="search role or company..." />
+        <input name="tag" defaultValue={tag} placeholder="tag (eg: typescript)" />
+        <button type="submit">Filter</button>
+      </form>
+
+      <ul style={{ listStyle: "none", padding: 0 }}>
+        {jobs.length === 0 && <li>no jobs found (or db not setup yet)</li>}
+        {jobs.map((job) => (
+          <li key={job.id} style={{ border: "1px solid #ddd", padding: 14, marginBottom: 10, borderRadius: 8 }}>
+            <Link href={`/jobs/${job.id}`}>

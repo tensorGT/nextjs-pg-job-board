@@ -13,3 +13,7 @@ export default async function JobDetailPage({ params }: { params: { id: string }
   return (
     <main style={{ maxWidth: 720, margin: "32px auto", fontFamily: "sans-serif", padding: "0 16px" }}>
       <Link href="/">← back to jobs</Link>
+      <h1>{job.title}</h1>
+      <p>
+        <strong>{job.company}</strong> • {job.location}
+      </p>
