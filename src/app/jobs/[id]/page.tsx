@@ -17,3 +17,7 @@ export default async function JobDetailPage({ params }: { params: { id: string }
       <p>
         <strong>{job.company}</strong> • {job.location}
       </p>
+      <p style={{ marginTop: 12 }}>{job.description}</p>
+    </main>
+  );
+}

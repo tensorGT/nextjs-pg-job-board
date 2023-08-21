@@ -5,3 +5,5 @@ CREATE TABLE IF NOT EXISTS jobs (
   location VARCHAR(100) NOT NULL,
   tags TEXT[] NOT NULL DEFAULT '{}',
   description TEXT NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);

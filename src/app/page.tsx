@@ -47,3 +47,13 @@ export default async function HomePage({
         {jobs.map((job) => (
           <li key={job.id} style={{ border: "1px solid #ddd", padding: 14, marginBottom: 10, borderRadius: 8 }}>
             <Link href={`/jobs/${job.id}`}>
+              <strong>{job.title}</strong>
+            </Link>{" "}
+            at {job.company} ({job.location})
+            <div style={{ fontSize: 13, color: "#555", marginTop: 4 }}>tags: {job.tags.join(", ")}</div>
+          </li>
+        ))}
+      </ul>
+    </main>
+  );
+}

@@ -5,3 +5,5 @@ dont forget run `schema.sql` in postgres and set `DATABASE_URL` before start.
 
 ```bash
 npm install
+npm run dev
+```

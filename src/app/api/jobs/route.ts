@@ -28,3 +28,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "need title and company" }, { status: 400 });
   }
   const tags = Array.isArray(body.tags) ? body.tags : [];
+  const res = await pool.query<JobRow>(
+    "INSERT INTO jobs (title, company, location, tags, description) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+    [body.title, body.company, body.location || "Remote", tags, body.description || ""]
+  );
+  return NextResponse.json(res.rows[0], { status: 201 });
+}
